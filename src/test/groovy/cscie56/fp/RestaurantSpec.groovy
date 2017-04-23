@@ -15,8 +15,22 @@ class RestaurantSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
+    void "test validation of nullable objects" () {
+        when:
+        Restaurant r1 = new Restaurant()
+        then:
+        !r1.validate()
+
+    }
+
+    void "test cuisineType is from the list" () {
+        Restaurant r = new Restaurant(restaurantName:"Qdaba", location: "Reston")
+        r.cuisineType = 'American'
+        r.save(flush:true)
+        assertFalse r.validate()
+        assertEquals 'NotValid not in list for type.', 'inList', r.errors['cuisineType']
+
+        r.cuisineType = 'Mexican'
+        assertTrue r.validate()
     }
 }
