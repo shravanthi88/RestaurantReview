@@ -53,6 +53,8 @@ dependencies {
     testCompile "org.grails.plugins:geb"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
+    compile 'org.grails.plugins:grails-google-visualization:2.2.1'
+    runtime 'org.grails.plugins:ajax-tags:1.0.0.RC1'
 }
 
 bootRun {

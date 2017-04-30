@@ -26,12 +26,15 @@
                 <a class="navbar-brand" href="/#">
                     <i class="fa grails-icon">
                         <asset:image src="grails-cupsonly-logo-white.svg"/>
-                    </i> Grails
+                    </i> Restaurant Review
                 </a>
             </div>
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
-                <ul class="nav navbar-nav navbar-right">
-                    <g:pageProperty name="page.nav" />
+                <ul class="nav navbar-nav">
+                    <li><a href="../../restaurant/index">Restaurants</a></li>
+                    <li class="active"><a href="../../restaurant/search">Search <span class="sr-only">(current)</span></a></li>
+                    <li><a href="../../survey/create">Create Survey </a></li>
+                    <li><a href="../../customer/index">My Profile </a></li>
                 </ul>
             </div>
         </div>

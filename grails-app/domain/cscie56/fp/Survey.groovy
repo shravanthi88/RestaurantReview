@@ -8,6 +8,7 @@ class Survey {
     Integer ratings
     Integer ambiance
     String review
+    Date dateCreated
 
     static belongsTo = [customer:Customer,restaurant:Restaurant]
 
