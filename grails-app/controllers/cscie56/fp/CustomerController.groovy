@@ -1,12 +1,12 @@
 package cscie56.fp
 
-import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-@Transactional(readOnly = true)
-class CustomerController {
+import static org.springframework.http.HttpStatus.CREATED
+import static org.springframework.http.HttpStatus.NO_CONTENT
+import static org.springframework.http.HttpStatus.OK
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+class CustomerController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)

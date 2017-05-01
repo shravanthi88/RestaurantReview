@@ -1,5 +1,6 @@
 package csci56.fp
 
+import cscie56.fp.RestaurantService
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 

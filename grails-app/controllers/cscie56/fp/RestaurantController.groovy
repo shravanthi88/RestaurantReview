@@ -4,9 +4,9 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.converters.JSON
 
+
 @Transactional(readOnly = true)
 class RestaurantController {
-
     def restaurantService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -25,9 +25,8 @@ class RestaurantController {
     }
 
     def getInput (Restaurant restaurant){
-        System.out.println(restaurant)
         def data = [:]
-             def cols = [
+        def cols = [
                 [label: "Variables", type:"string"],
                 [label: "Values", type:"number"]
         ]
@@ -146,16 +145,6 @@ class RestaurantController {
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
-        }
-    }
-
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'restaurant.label', default: 'Restaurant'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
         }
     }
 }
