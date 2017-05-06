@@ -12,7 +12,11 @@
             <tbody>
               <g:each in="${searchresults}" status="i" var="restaurant">
                   <tr>
-                      <td>${restaurant.restaurantName}</td>
+                      <td>
+                          <g:link   controller="restaurant" action="show" id="${restaurant.id}" resource="${restaurant}">
+                              ${restaurant.restaurantName}
+                      </g:link>
+                      </td>
                       <td>${restaurant.cuisineType}</td>
                       <td>${restaurant.location}</td>
                   </tr>

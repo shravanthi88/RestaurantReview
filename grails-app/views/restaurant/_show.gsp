@@ -15,22 +15,23 @@
                             <p><strong>Current Company: </strong>${restaurant.location} </p>
                             <p><strong>Department: </strong>${restaurant.cuisineType} </p>
                         </div>
-                    </div>
+                    </div><br/><br/>
 
                     <div class="panel panel-info">
                         <div class="panel-heading">Reviews
                         </div>
                         <div class = "panel-body">
-                            <div class="blog-comment">
+                            <div class="reviews">
                                 <div class="post-comments">
                                     <ul class="comments">
                                         <g:each in="${restaurant.surveys}" var="survey" >
-                                            <p class="meta">${survey.dateCreated}
+                                            <p class="meta"><g:formatDate format="yyyy-MM-dd HH:mm" date="${survey.dateCreated}"/>&nbsp;
                                             <g:link   controller="customer" action="show" id="${survey.customer.id}" resource="${customer}">
                                                 ${survey.customer.username}
                                             </g:link>
                                             says:
                                             </p>
+                                            <span class="rating-static rating-${survey.ratings}"></span>
                                             <li class="clearfix">
                                                 <div class="post-comments">
                                                     <p>${survey.review}</p>

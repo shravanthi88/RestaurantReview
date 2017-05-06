@@ -1,11 +1,14 @@
 package cscie56.fp
 
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NO_CONTENT
 import static org.springframework.http.HttpStatus.OK
 
+
+@Secured ([Role.ROLE_CUSTOMER])
 class SurveyController {
 
     def index(Integer max) {

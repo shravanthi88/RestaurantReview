@@ -15,10 +15,6 @@
             </ul>
         </div>
         <div id="show-customer" class="content scaffold-show" role="main">
-            <h1><g:message code="default.show.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-            </g:if>
             <f:display bean="customer" />
             <g:form resource="${this.customer}" method="DELETE">
                 <fieldset class="buttons">

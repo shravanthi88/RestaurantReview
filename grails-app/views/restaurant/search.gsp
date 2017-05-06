@@ -7,6 +7,7 @@
         <asset:javascript src="application.js"></asset:javascript>
     </head>
     <body>
+    <div id="wrap">
         <g:form action="search">
             <table>
                 <tbody>
@@ -23,6 +24,7 @@
             <g:submitToRemote update="searchresults" value="Search" url="[controller:'restaurant', action:'searchResults']">
             </g:submitToRemote>
         </g:form>
-    <g:render template="searchresults"/>
+        <g:render template="searchresults"/>
+    </div>
     </body>
 </html>

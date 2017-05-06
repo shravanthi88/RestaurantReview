@@ -2,11 +2,33 @@ package restaurantreview
 
 import cscie56.fp.Customer
 import cscie56.fp.Restaurant
+import cscie56.fp.Role
 import cscie56.fp.Survey
+import cscie56.fp.User
+import cscie56.fp.UserRole
 
 class BootStrap {
 
     def init = { servletContext ->
+
+        User customer1 = new User(username: 'John',password: 'secret')
+        saveObject(customer1)
+        User customer2 = new User(username: 'Sam',password: 'supersecret')
+        saveObject(customer2)
+        User customer3 = new User(username: 'Test',password: 'Test')
+        saveObject(customer3)
+        User rep = new User(username: 'admin', password: 'admin')
+        saveObject(rep)
+
+        Role customerRole = new Role(authority: Role.ROLE_CUSTOMER)
+        saveObject(customerRole)
+        Role repRole = new Role(authority: Role.ROLE_REP)
+        saveObject(repRole)
+
+        UserRole.create(customer1,customerRole)
+        UserRole.create(rep,repRole)
+        UserRole.create(customer2,customerRole)
+        UserRole.create(customer3,customerRole)
 
         Restaurant r = new Restaurant (restaurantName: "Chipotle",location:"Reston",cuisineType: "Mexican")
         r.save (flush:true)
@@ -36,6 +58,11 @@ class BootStrap {
     def destroy = {
     }
 
+    def saveObject(object) {
+        if (!object.save(flush:true)) {
+            object.errors.allErrors.each { println it }
+        }
+    }
 
 
 }

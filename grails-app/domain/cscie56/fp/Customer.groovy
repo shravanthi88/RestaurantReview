@@ -7,6 +7,7 @@ class Customer {
     Integer age
 
     static hasMany = [surveys:Survey]
+
     static constraints = {
         username (blank: false, unique: true)
         emailID nullable: false
