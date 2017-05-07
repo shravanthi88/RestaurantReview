@@ -21,17 +21,26 @@ class CustomerController {
 
     @Secured ([Role.ROLE_REP,Role.ROLE_CUSTOMER,Role.ROLE_ANONYMOUS])
     def show(Customer customer) {
+        assignRoles (customer)
         respond customer
     }
 
-    @Secured ([Role.ROLE_CUSTOMER,Role.ROLE_ANONYMOUS])
+    @Secured ([Role.ROLE_ANONYMOUS])
     def create() {
         respond new Customer (params)
     }
 
-    @Secured ([Role.ROLE_CUSTOMER,Role.ROLE_ANONYMOUS])
+    @Secured ([Role.ROLE_REP,Role.ROLE_ANONYMOUS])
+    def assignRoles (Customer customer) {
+        User user1 = new User(username: customer.username ,password: 'secret').save(flush:true)
+        Role customerRole = Role.findByAuthority('ROLE_CUSTOMER')
+        UserRole.create(user1,customerRole).save(flush:true)
+    }
+
+    @Secured ([Role.ROLE_REP,Role.ROLE_CUSTOMER,Role.ROLE_ANONYMOUS])
     @Transactional
     def save(Customer customer) {
+
         if (customer == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -46,6 +55,7 @@ class CustomerController {
 
         customer.save flush:true
 
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'customer.label', default: 'Customer'), customer.id])
@@ -53,6 +63,7 @@ class CustomerController {
             }
             '*' { respond customer, [status: CREATED] }
         }
+
     }
 
     def myProfile (Customer customer){
@@ -66,6 +77,7 @@ class CustomerController {
         }
     }
 
+    @Secured ([Role.ROLE_CUSTOMER])
     def edit(Customer customer) {
         respond customer
     }
