@@ -558,10 +558,10 @@ a.skip {
 }
 
 .grails-logo-container {
-    background:#79b94c no-repeat 50% 30%;
+    margin-top:10px;
     margin-bottom: 20px;
     color: white;
-    height:300px;
+    height:400px;
     text-align:center;
 }
 
