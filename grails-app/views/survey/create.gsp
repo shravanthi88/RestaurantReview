@@ -90,10 +90,10 @@
                         <td valign="top" class="value">
                             <g:select from="${Customer.list()}"
                                       optionValue="username"
-                                      name="customer.id" required=""
+                                      name="customer.id"
                                       optionKey="id"
-                                      value=""
-                                      id="customer"/>
+                                      value="username"
+                                      id="customer" />
                         </td>
                     </tr>
                     </tbody>

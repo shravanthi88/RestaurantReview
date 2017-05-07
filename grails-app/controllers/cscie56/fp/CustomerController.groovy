@@ -19,16 +19,17 @@ class CustomerController {
         respond Customer.list(params), model:[customerCount: Customer.count()]
     }
 
-    @Secured ([Role.ROLE_REP,Role.ROLE_CUSTOMER])
+    @Secured ([Role.ROLE_REP,Role.ROLE_CUSTOMER,Role.ROLE_ANONYMOUS])
     def show(Customer customer) {
         respond customer
     }
 
-    @Secured ([Role.ROLE_CUSTOMER,Role.ROLE_REP,Role.ROLE_ANONYMOUS])
+    @Secured ([Role.ROLE_CUSTOMER,Role.ROLE_ANONYMOUS])
     def create() {
         respond new Customer (params)
     }
 
+    @Secured ([Role.ROLE_CUSTOMER,Role.ROLE_ANONYMOUS])
     @Transactional
     def save(Customer customer) {
         if (customer == null) {

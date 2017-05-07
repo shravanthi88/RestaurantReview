@@ -34,7 +34,7 @@ class BootStrap {
         r.save (flush:true)
 
         Restaurant r1 = new Restaurant (restaurantName: "Olive Garden",location:"Reston",cuisineType: "Italian")
-        r.save (flush:true)
+        r1.save (flush:true)
 
         Customer c = new Customer (username: "John",emailID: "john@test.com", age: 29)
         c.save (flush:true)
@@ -48,12 +48,20 @@ class BootStrap {
         Survey s1 = new Survey (foodTaste: 2, foodService: 3,hygiene: 4,ratings: 3,ambiance: 3,review: "Test")
         s1.save (flush:true)
 
+        Survey s2 = new Survey (foodTaste: 2, foodService: 3,hygiene: 4,ratings: 3,ambiance: 3,review: "Nice")
+        s2.save (flush:true)
+
         r.addToSurveys(s)
         r.addToSurveys(s1)
         r.save(flush:true)
 
         c.addToSurveys(s)
         c1.addToSurveys(s1)
+
+        r1.addToSurveys(s2)
+        r1.save(flush:true)
+        c1.addToSurveys(s2)
+
     }
     def destroy = {
     }
