@@ -88,7 +88,7 @@
                             <span class='required-indicator'>*</span>
                         </td>
                         <td valign="top" class="value">
-                            <g:select from="${Customer.list()}"
+                            <g:select from="${Customer.findByUsername(sec.loggedInUserInfo(field:"username"))}"
                                       optionValue="username"
                                       name="customer.id"
                                       optionKey="id"

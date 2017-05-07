@@ -75,8 +75,6 @@ class CustomerController {
 
             def user = springSecurityService.currentUser.username
             def list = Customer.findByUsername(user)
-            System.out.println (list)
-
             render (view:'myProfile',model:[list:list])
         }
     }
