@@ -11,6 +11,7 @@ import static org.springframework.http.HttpStatus.OK
 @Secured ([Role.ROLE_CUSTOMER])
 class CustomerController {
 
+    boolean isNewCustomer = false;
     def springSecurityService
 
     @Secured ([Role.ROLE_REP])
@@ -27,14 +28,17 @@ class CustomerController {
 
     @Secured ([Role.ROLE_ANONYMOUS])
     def create() {
+        isNewCustomer = true;
         respond new Customer (params)
     }
 
     @Secured ([Role.ROLE_REP,Role.ROLE_ANONYMOUS])
     def assignRoles (Customer customer) {
-        User user1 = new User(username: customer.username ,password: 'secret').save(flush:true)
-        Role customerRole = Role.findByAuthority('ROLE_CUSTOMER')
-        UserRole.create(user1,customerRole).save(flush:true)
+        if (isNewCustomer){
+            User user1 = new User(username: customer.username ,password: 'secret').save(flush:true)
+            Role customerRole = Role.findByAuthority('ROLE_CUSTOMER')
+            UserRole.create(user1,customerRole).save(flush:true)
+        }
     }
 
     @Secured ([Role.ROLE_REP,Role.ROLE_CUSTOMER,Role.ROLE_ANONYMOUS])
