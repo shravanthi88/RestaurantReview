@@ -77,7 +77,9 @@
                         <td valign="top" class="value">
                             <g:select from="${Restaurant.list()}"
                                       optionValue="restaurantName"
-                                      name="restaurant.id"
+                                      optionKey="id"
+                                      name="restaurant.id" required=""
+                                      value=""
                                       id="restaurant" />
                         </td>
                     </tr>
@@ -88,7 +90,9 @@
                         <td valign="top" class="value">
                             <g:select from="${Customer.list()}"
                                       optionValue="username"
-                                      name="customer.id"
+                                      name="customer.id" required=""
+                                      optionKey="id"
+                                      value=""
                                       id="customer"/>
                         </td>
                     </tr>

@@ -12,7 +12,6 @@ class RestaurantService {
         def surveyList
         surveyList = r.surveys as Set<Survey>
 
-        System.out.println(surveyList.foodService)
         def avgServiceval   = calAvg (surveyList.foodService)
         def avgHygieneval   = calAvg (surveyList.hygiene)
         def avgAmbianceval  = calAvg (surveyList.ambiance)
