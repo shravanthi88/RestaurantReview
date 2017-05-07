@@ -69,9 +69,6 @@ class RestaurantController {
         render (view:'search')
     }
 
-    def String wrapSearchParm(value) {
-        '%'+value+'%'
-    }
 
     @Secured ([Role.ROLE_CUSTOMER,Role.ROLE_REP,Role.ROLE_ANONYMOUS])
     def searchResults () {
@@ -81,14 +78,15 @@ class RestaurantController {
         String cusineType = params.cuisineType
 
         if (resName){
-            list = Restaurant.findAllByRestaurantNameIlike(wrapSearchParm(resName))
+            list = Restaurant.findAllByRestaurantNameIlike("%${resName}%")
         } else if (cusineType) {
-            list = Restaurant.findAllByCuisineTypeIlike(wrapSearchParm(cusineType))
+            list = Restaurant.findAllByCuisineTypeIlike("%${cusineType}%")
         } else if (resName!=null & cusineType!=null) {
-            list = Restaurant.findAllByRestaurantNameIlikeAndCuisineTypeIlike ((wrapSearchParm(resName)),(wrapSearchParm(cusineType)))
+            list = Restaurant.findAllByRestaurantNameIlikeAndCuisineTypeIlike ("%${resName}%","%${cusineType}%")
         }  else {
             list = Restaurant.list()
         }
+
         render(template:'searchResults', model:[searchresults:list])
 
     }

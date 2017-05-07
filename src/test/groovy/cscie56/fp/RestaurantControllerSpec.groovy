@@ -15,6 +15,15 @@ class RestaurantControllerSpec extends Specification {
         params << [restaurantName:'firstName',location:'lastName',cuisineType:'Chinese']
     }
 
+    void "Test the index action returns the correct model"() {
+
+        when:"The index action is executed"
+        controller.index()
+
+        then:"The model is correct"
+        !model.restaurantList
+    }
+
     void "Test that the show action returns the correct model"() {
         when:"The show action is executed with a null domain"
         controller.show(null)
@@ -29,6 +38,20 @@ class RestaurantControllerSpec extends Specification {
 
         then:"A model is populated containing the domain instance"
         model.restaurant == restaurant
+    }
+
+
+    void "Test that the searchResults action returns results"() {
+      when:
+      populateValidParams(params)
+      Restaurant restaurant = new Restaurant(params)
+      controller.save(restaurant)
+
+      String cuisineType = "Italian"
+      def list  = Restaurant.findAllByCuisineTypeIlike("%${cuisineType}%")
+
+        then:
+        list.size() == 0
     }
 
     void "Test the create action returns the correct model"() {

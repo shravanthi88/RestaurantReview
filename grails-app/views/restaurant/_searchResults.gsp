@@ -24,4 +24,7 @@
             </tbody>
         </table>
     </g:if>
+    <g:else>
+        <p>No Results Found</p>
+    </g:else>
 </div>

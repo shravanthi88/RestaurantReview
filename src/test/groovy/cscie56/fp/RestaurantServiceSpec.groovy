@@ -7,10 +7,9 @@ import spock.lang.*
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 @TestFor(RestaurantService)
-@Mock(Restaurant)
+@Mock([Restaurant,Survey,Customer])
 class RestaurantServiceSpec extends Specification {
 
-    def restaurantService
 
     void "Test that average values are calculated for all the properties in a survey"() {
         when:
@@ -41,7 +40,7 @@ class RestaurantServiceSpec extends Specification {
         restaurant.addToSurveys(s2)
 
         def map =[:]
-        map = restaurantService.calculateAvg (restaurant)
+        map = service.calculateAvg (restaurant)
 
         then:
         map !=null
