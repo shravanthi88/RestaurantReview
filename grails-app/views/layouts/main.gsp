@@ -34,9 +34,7 @@
                     <li><a href="../../restaurant/index">Restaurants</a></li>
                     <li class="active"><a href="../../restaurant/search">Search <span class="sr-only">(current)</span></a></li>
                     <li><a href="../../survey/create">Create Survey </a></li>
-                    <sec:ifAllGranted roles='ROLE_REP'>
-                        <li><a href="../../customer/index"> Customers </a></li>
-                    </sec:ifAllGranted>
+                    <li><a href="../../customer/index"> Customers </a></li> <!--only admin can login and see-->
                     <sec:ifAllGranted roles='ROLE_ANONYMOUS'>
                       <li><a href="../../customer/create"> New Customer </a></li>
                     </sec:ifAllGranted>
