@@ -1,3 +1,4 @@
+<%@ page import="cscie56.fp.Customer; cscie56.fp.Restaurant" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,7 +28,72 @@
             </g:hasErrors>
             <g:form action="save">
                 <fieldset class="form">
-                    <f:all bean="survey"/>
+                <table>
+                    <tbody>
+                    <tr class="prop">
+                        <td valign="top" class="name">Food Service:</td>
+                        <td valign="top" class="value">
+                            <input type="range" name="foodService" style="width:200px;" value="" min="1" max="10" step="1" id="foodService" oninput="foodServiceOutputId.value = foodService.value"/>
+                            <output name="foodServiceName" id="foodServiceOutputId"></output></td>
+                    </tr>
+                    <tr class="prop">
+                        <td valign="top" class="name">Taste:</td>
+                        <td valign="top" class="value">
+                            <input type="range" name="foodTaste" style="width:200px;" value="" min="1" max="10" step="1" id="foodTaste" oninput="foodTasteOutputId.value = foodTaste.value"/>
+                             <output name="foodTasteName" id="foodTasteOutputId"></output></td>
+                    </tr>
+                    <tr class="prop">
+                        <td valign="top" class="name">Hygiene:</td>
+                        <td valign="top" class="value">
+                            <input type="range" name="hygiene" style="width:200px;" value="" min="1" max="10" step="1" id="hygiene" oninput="hygieneOutputId.value = hygiene.value"/>
+                            <output name="hygieneName" id="hygieneOutputId"></output>
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td valign="top" class="name">Ambiance:</td>
+                        <td valign="top" class="value">
+                            <input type="range" name="ambiance" style="width:200px;" value="" min="1" max="10" step="1" id="ambiance" oninput="ambianceOutputId.value = ambiance.value"/>
+                            <output name="ambianceName" id="ambianceOutputId"></output></td>
+                    </tr>
+                    <tr class="prop">
+                        <td valign="top" class="name">Ratings:
+                            <span class='required-indicator'>*</span>
+                        </td>
+                        <td valign="top" class="value">
+                            <input type="range" required  name="ratings" style="width:200px;" value="" min="1" max="10" step="1" id="ratings" oninput="ratingsOutputId.value = ratings.value"/>
+                            <output name="ratingsName" id="ratingsOutputId"></output></td>
+                    </tr>
+                    <tr class="prop">
+                        <td valign="top" class="name">Review:
+                            <span class='required-indicator'>*</span>
+                        </td>
+                        <td valign="top" class="value">
+                            <textarea name="review" required id="review" type="text" value="${review}" rows="6" cols="80" maxlength="150">
+                            </textarea>
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td valign="top" class="name">Restaurant Name: </td>
+                        <td valign="top" class="value">
+                            <g:select from="${Restaurant.list()}"
+                                      optionValue="restaurantName"
+                                      name="restaurant.id"
+                                      id="restaurant" />
+                        </td>
+                    </tr>
+                    <tr class="prop">
+                        <td valign="top" class="name">Customer Name:
+                            <span class='required-indicator'>*</span>
+                        </td>
+                        <td valign="top" class="value">
+                            <g:select from="${Customer.list()}"
+                                      optionValue="username"
+                                      name="customer.id"
+                                      id="customer"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

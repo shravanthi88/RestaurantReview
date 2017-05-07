@@ -14,6 +14,10 @@ class Survey {
 
     static constraints = {
         review maxSize:150, blank:false
-        ratings nullable: false
+        foodTaste     nullable: true, range: 1..10
+        foodService   nullable: true, range: 1..10
+        ratings       nullable: false, range: 1..10
+        ambiance      nullable: true, range: 1..10
+        hygiene       nullable: true, range: 1..10
     }
 }

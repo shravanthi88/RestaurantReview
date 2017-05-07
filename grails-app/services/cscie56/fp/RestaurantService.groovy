@@ -12,6 +12,7 @@ class RestaurantService {
         def surveyList
         surveyList = r.surveys as Set<Survey>
 
+        System.out.println(surveyList.foodService)
         def avgServiceval   = calAvg (surveyList.foodService)
         def avgHygieneval   = calAvg (surveyList.hygiene)
         def avgAmbianceval  = calAvg (surveyList.ambiance)
@@ -31,8 +32,10 @@ class RestaurantService {
         int total = 0;
         int avg = 0;
         for (int i=0; i < list.size() ; i++) {
-            total = total +list[i]
-            avg = total/list.size()
+            if (list[i]!=null) {
+                total = total + list[i]
+                avg = total / list.size()
+            }
         }
         return avg
     }

@@ -43,5 +43,19 @@ class CustomerSpec extends Specification {
         !customerWithSameCustomerName.validate()
     }
 
+    void "test if customer age is in Range"() {
+        def customer = new Customer( username: "test", emailID: "name@test.com" )
+        customer.age = 0
+        assertFalse customer.validate()
+        assertEquals '0 is below range for age.', 'range', customer.errors['age']
+
+        customer.age = 120
+        assertFalse customer.validate()
+        assertEquals '120 is above range for age.', 'range', customer.errors['age']
+
+        customer.age = 40
+        assertTrue customer.validate()
+    }
+
 
 }

@@ -42,6 +42,7 @@ class RestaurantController {
             rows << [c: [[v: name], [v: value]]]
         }
         if (restaurant.surveys.size() > 1) {
+
             data = restaurantService.calculateAvg (restaurant)
 
             addRow("Service", data.get('Service'))

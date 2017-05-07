@@ -15,6 +15,20 @@ class SurveySpec extends Specification {
 
     def cleanup() {
     }
+    void "test if values are in Range"() {
+        Survey s1  = new Survey(foodService: 3,hygiene: 5,ambiance: 3, review: "Test very good")
+        s1.save( flush:true)
+        s1.foodTaste = 0
+        assertFalse s1.validate()
+        assertEquals '0 is below range for foodTaste', 'range', s1.errors['foodTaste']
+
+        s1.foodService = 12
+        assertFalse s1.validate()
+        assertEquals '12 is above range for foodService.', 'range', s1.errors['foodService']
+
+        s1.ratings = 8
+        assertTrue s1.validate()
+    }
 
     void "test if ratings can be nullable"() {
         Survey s1  = new Survey(foodTaste: 4,service: 3,hygiene: 5,ambiance: 3, review: "Test very good")
